@@ -8,13 +8,13 @@
 <localhost>127.0.0.1</localhost>
 <clientid>0</clientid>
 <liveport>4002</liveport>
-<paperport>4002</paperport>
-<liveaccount>U9969195</liveaccount>
-<paperaccount>DU1287285</paperaccount>
+<paperport>7497</paperport>
+<liveaccount>U9986966</liveaccount>
+<paperaccount>DU1300317</paperaccount>
 <maxtrytimes>2</maxtrytimes>
 </IBServerConfig>
 <StockConfig>
-<stocksymbol>AAPL</stocksymbol>
+<stocksymbol>FB</stocksymbol>
 <ordertype>MKT</ordertype>
 <securitytype>STK</securitytype>
 <stockexchange>SMART</stockexchange>
@@ -22,5 +22,6 @@
 <stockcurrency>USD</stockcurrency>
 <stockexpiry>0.0</stockexpiry>
 <orderquantity>100</orderquantity>
+<firstorderquantitypercent>0.5</firstorderquantitypercent>
 </StockConfig>
 </IBTradeConfig>
