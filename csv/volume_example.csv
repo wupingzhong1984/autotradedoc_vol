@@ -1,0 +1,57 @@
+Example:
+
+scenario start_time end_time  colume  min G/R  white  rows
+
+1: T10   06:30:30   10:00:00  0       0        0      2_3_4  (min G/R = 0, white = 0, max G/R = all of colume(0)*rows)
+
+2: T10   06:30:30   10:00:00  0       5        0      2_3_4  (min G/R = 5, white = 0, max G/R = some of colume(0)*rows)
+
+3: T10   06:30:30   10:00:00  0       0        6      2_3_4  (min G/R = 0, white = 6, max G/R = some of colume(0)*rows)
+
+4: T10   06:30:30   10:00:00  0       4        6      2_3_4  (min G/R = 4, white = 6, max G/R = some of colume(0)*rows)
+
+5: T10   06:30:30   10:00:00  5       2        2      2_3_4  (min G/R = 2, white = 2, max G/R = some of colume(5)*rows)
+
+##################################################################################################################
+
+
+
+
+#######################################################################
+T10,      06:30:00,   12:30:00, 0,      1,       2,         2_3
+#######################################################################
+scenario, start_time, end_time, colume, percent, white_max, rows
+
+yellow zone: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 (B11 --> C18, row_1) 
+
+a:  colume:
+    0 --> B11 to C18, all yellow
+    4 --> C15 to C18, 4 yellow	 
+
+b:  percentage:
+    1 --> 1 of [B21...C28]+[B31...C38], 1/32 percentage
+    0 --> 0 of [B21...C28]+[B31...C38], 0/32 no percentage
+
+c:  white_max:
+    1 --> 1 of [B21...C28]+[B31...C38], 1/32 white
+    0 --> 0 of [B21...C28]+[B31...C38], 0/32 no white
+
+    exp: when percent = 3, white_max = 3
+	 if (Green <= 3 && White <= 3) --> it is Red
+         else if (Red <= 3 && White <= 3) --> it is Green
+         else --> NO Signs
+
+d:  rows:
+    2_3 --> B21,B22, ,,, 
+            B31,B32, ,,,  --> T10, example
+
+    2_3_4 --> B21,B22, ,,,  
+              B31,B32, ,,,  
+              B41,B42, ,,,  --> T11, example
+
+
+D:  1) Only Volume/ No Time, 
+	->change the "T10_scenario.csv"->"_T10_scenario.csv"
+	->change the "T10_area_zone.csv"->"_T10_area_zone.csv"
+			 
+

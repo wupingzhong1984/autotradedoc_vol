@@ -1,0 +1,77 @@
+Example:
+
+scenario, start_time, end_time,   area,     max G/R  white
+
+1: T10,   06:30:30,   10:00:00,   area_1,   16,      0     (max G/R = 16, white = 0, min G/R = 0, all zones = 16)
+
+2: T10,   06:30:30,   10:00:00,   area_1,   22,      0     (max G/R = 22, white = 0, min G/R = 2, all zones = 24)
+
+3: T10,   06:30:30,   10:00:00,   area_1,   15,      1     (max G/R = 15, white = 1, min G/R = 0, all zones = 16)
+
+4: T10,   06:30:30,   10:00:00,   area_1,   42,      4     (max G/R = 42, white = 4, min G/R = 2, all zones = 48)
+
+##################################################################################################################
+
+
+
+
+
+scenario, start_time, end_time, area,   percent, white_min
+############################
+T10,      06:30:30,   10:00:00, area_1, 16,      0  (zones:16) O.K.Case--> G:16, W:0, R:0  (G >= 16)
+
+T10,      06:30:30,   10:00:00, area_2, 15,      1  (zones:16) O.K.Case--> G:15, W:1, R:0  (G = 15,W >= 1)
+                                                                           G:16, W:0, R:0  (G > 15)
+
+T10,      06:30:30,   10:00:00, area_3, 14,      2  (zones:16) O.K.Case--> G:14, W:2, R:0  (G = 14,W >= 2)
+									   G:15, W:1, R:0  (G > 14)
+									   G:15, W:0, R:1  (G > 14)
+									   G:16, W:0, R:0  (G > 14)
+
+T10,      06:30:30,   10:00:00, area_4, 14,      1  (zones:16) O.K.Case--> G:14, W:1, R:1  (G = 14,W >= 1)
+                                                                           G:14, W:2, R:0  (G = 14,W >= 1)
+                                                                           G:15, W:1, R:0  (G > 14)
+									   G:15, W:0, R:1  (G > 14)
+									   G:16, W:0, R:0  (G > 14)
+
+T10,      06:30:30,   10:00:00, area_5, 14,      0  (zones:16) O.K.Case--> G:14, W:0, R:2  (G = 14,W >= 0)
+                                                                           G:14, W:1, R:1  (G = 14,W >= 0)
+                                                                           G:14, W:2, R:0  (G = 14,W >= 0)
+                                                                           G:15, W:1, R:0  (G > 14)
+									   G:15, W:0, R:1  (G > 14)
+									   G:16, W:0, R:0  (G > 14)
+
+T10,      10:00:00,   11:00:00, area_1, 24,      3(zones:32)
+############################
+
+
+
+     if(Green >= percent) { //Green = 14,15,16
+
+	if(Green == percent) { //Green = 14
+
+	    if(White >= white_min) {
+		 O.K.;
+	    } else {
+		 N.O.;
+	    }
+
+	} else { //Green = 15,16
+		O.K.;
+	}
+
+    } else { //Green = 13,12,11,10....
+	N.O.;
+    }
+
+
+
+a:  area, percent:
+
+    exp: when 06:30:30, area_1 + area_2
+
+    	 if (area_1-->Green && area_2-->Green) --> it is Green
+	 else (area_1-->Red && area_2-->Red) --> it is Red
+         else --> NO Signs
+			 
+
