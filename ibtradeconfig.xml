@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <IBTradeConfig>
 <IBApiConfig>
-<active>0</active>
+<active>1</active>
 <accounttype>paper</accounttype>
 </IBApiConfig>
 <IBServerConfig>
@@ -22,6 +22,6 @@
 <stockcurrency>USD</stockcurrency>
 <stockexpiry>0.0</stockexpiry>
 <orderquantity>100</orderquantity>
-<firstorderquantitypercent>0.5</firstorderquantitypercent>
+<firstorderquantitypercent>1</firstorderquantitypercent>
 </StockConfig>
 </IBTradeConfig>
